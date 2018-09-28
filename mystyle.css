@@ -1,0 +1,53 @@
+html{
+  background-color:black;
+  background-image:
+   radial-gradient(white, 5px, transparent 40px),
+radial-gradient(blue, 4px, transparent 40px),
+radial-gradient(green, 3px, transparent 40px),
+radial-gradient(red, 2px, transparent 40px);
+background-size: 450px 450px, 350px 350px, 250px 250px, 150px 150px; 
+background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+h1{
+  color:white;
+  text-align:center;
+  font-family:"Pacifico", cursive;
+  font-size:40px;
+}
+
+.intro{
+  color:white;
+  font-family:"Arvo", cursive;
+  font-size:15px;
+}
+
+img{
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#message{
+  color:white;
+}
+
+#world-map{
+  width: 100%;
+  height: auto;
+}
+
+
+#KR, #JP, #CA, #FR, #FI, #IN, #DE, #NL, #IT, #ES  {
+  fill: green !important;
+}
+
+#GB{
+  fill:blue !important;
+}
+
+@media only screen and (max-width: 600px) {
+    width:100%;
+}
