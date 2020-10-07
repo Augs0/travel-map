@@ -1,16 +1,39 @@
-function findCountry (){
-  var response;
-  var searchCountry = searchPlace.value;
-  if (searchCountry == "Norway" || searchCountry == "norway" || searchCountry == "Iceland" ||searchCountry == "iceland" || searchCountry == "Denmark" || searchCountry == "denmark" || searchCountry == "Sweden" ||searchCountry == "sweden" || searchCountry == "New Zealand" || searchCountry == "new zealand" || searchCountry == "Austria" || searchCountry == "austria" || searchCountry == "Cambodia" || searchCountry == "cambodia" || searchCountry == "Hong Kong" || 
-searchCountry == "hong kong" ||searchCountry == "Vietnam" || 
-searchCountry == "vietnam" || searchCountry =="Cyprus" ||searchCountry =="cyprus" || searchCountry == "Greece" || searchCountry == "greece" || searchCountry == "Lithuania" ||searchCountry == "lithuania" || searchCountry == "Poland" || searchCountry == "poland" ||searchCountry == "Malaysia"||searchCountry == "malaysia"||searchCountry == "Turkey"||searchCountry == "turkey"){
-    response = "I would like to visit!";
-document.getElementById("message").innerHTML = response;
-  } else if(searchCountry == "Japan" || searchCountry == "japan" ||searchCountry == "Korea" || searchCountry == "korea" ||searchCountry == "Canada" || searchCountry == "canada" ||searchCountry == "Spain" || searchCountry == "spain" ||searchCountry == "India" || searchCountry == "india" ||searchCountry == "France" || searchCountry == "france" ||searchCountry == "Netherlands" || searchCountry == "netherlands" ||searchCountry == "Italy" || searchCountry == "italy" ||searchCountry == "Germany" || searchCountry == "germany" ||searchCountry == "Finland" || searchCountry == "finland"){
-    response = "I've been, but there are always new places to discover!";
-document.getElementById("message").innerHTML = response;
-  }else {
-    response = "Never thought about it! Tell me more!";    document.getElementById("message").innerHTML = response;
+const countries = ["japan", "korea", "canada", "france", "finland", "india", "germany", "netherlands", "italy", "spain", "hungary", "czech republic", "austria", "slovakia", "greece", "portugal", "jersey"]
+const wantToVisit = ["norway", "sweden", "egypt", "malaysia", "thailand", "mexico", "colombia", "new zealand", "fiji", "lithuania", "poland", "hong kong", "georgia", "vietnam", "armenia", "cyprus", "turkey", "cambodia", "denmark", "iceland", "iran", "jordan"]
+
+const visited = document.querySelector('.visited-list');
+const allCountries = countries.map(country => {
+  return '<li>' + country + '</li>';
+}).join('');
+visited.innerHTML = allCountries;
+
+const planning = document.querySelector('.planning-list');
+const plannedCountries = wantToVisit.map(country => {
+  return '<li>' + country + '</li>';
+}).join('');
+planning.innerHTML = plannedCountries;
+
+
+const submitBtn = document.getElementById("submit-btn");
+submitBtn.addEventListener('click', findCountry)
+
+
+function findCountry() {
+  const response = document.getElementById('message');
+  let searchedCountry = document.getElementById('searchPlace').value.toLowerCase();
+  const firstLetterCapitalized = capitalizeFirstLetter(searchedCountry)
+  if (countries.includes(searchedCountry)) {
+    response.innerHTML = `I have visited ${firstLetterCapitalized}`
+  } else if (wantToVisit.includes(searchedCountry)) {
+    response.innerHTML = `${firstLetterCapitalized} is on my list of places to visit!`
+  }
+  else {
+    response.innerHTML = `I have not yet visited ${firstLetterCapitalized}. Tell me about it!`
   }
 }
 
+function capitalizeFirstLetter(string) {
+  if (typeof string == undefined) return;
+  const firstLetter = string[0] || string.charAt(0);
+  return firstLetter ? firstLetter.toUpperCase() + string.slice(1) : '';
+}
